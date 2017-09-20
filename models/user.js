@@ -1,4 +1,4 @@
-var mogoose = require('mongoose');
+var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs'); // encrypt (a password) before it hits the database
 var Schema = mongoose.Schema;
 
@@ -47,3 +47,4 @@ UserSchema.methods.comparePassword = function(password) {
 }
 
 
+module.exports = mongoose.model('user', UserSchema);
