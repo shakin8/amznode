@@ -15,7 +15,6 @@ var User = require('./models/user');
 
 // server level variables
 var port = 8080;
-
 var app = express();
 
 // Connect to the database
@@ -28,6 +27,7 @@ mongoose.connect('mongodb://root:abc123@ds141264.mlab.com:41264/amznode', { useM
 });
 
 // Middleware
+app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,11 +36,11 @@ app.use(session ({
 	resave: true,
 	saveUninitialized: true,
 	secret: "Secret123"
-}))
-app.use(flash);
+}));
+app.use(flash());
 app.engine('ejs',engine);
 app.set('view engine', 'ejs');
-app.use(express.static('__dirname' + '/public'));
+
 
 
 var mainRoutes = require('./routes/main');

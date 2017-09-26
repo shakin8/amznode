@@ -21,7 +21,7 @@ router.post('/signup', function(req, res, next) {
 		} else {
 			user.save(function(err, user) {
 				if (err) return next(err);
-			res.redirect('/');	
+			return res.redirect('/');	
 			});
 		}
 	});
